@@ -22,6 +22,12 @@ from collections import deque
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
+# Load API keys from .env file (keys are never hardcoded in source code)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+except ImportError:
+    pass  # python-dotenv not installed; set keys as OS environment variables
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Sensor Agronomic Context
@@ -88,10 +94,10 @@ AGRONOMIC_CONTEXT = {
 #    2. Set below: ANTHROPIC_API_KEY = "sk-ant-..."
 # ─────────────────────────────────────────────────────────────────────────────
 
-# ✏️  PASTE YOUR FREE API KEY HERE:
-GROQ_API_KEY      = ""   # ← Paste your Groq key here (free at console.groq.com)
-GEMINI_API_KEY    = ""   # ← Gemini (FREE) — get at aistudio.google.com
-ANTHROPIC_API_KEY = ""   # ← Claude (PAID) — get at console.anthropic.com
+# ✏️  Set your API keys in the .env file at the project root (never here!)
+GROQ_API_KEY      = os.environ.get("GROQ_API_KEY", "")      # from .env
+GEMINI_API_KEY    = os.environ.get("GEMINI_API_KEY", "")    # from .env
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "") # from .env
 
 # API endpoints
 ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"

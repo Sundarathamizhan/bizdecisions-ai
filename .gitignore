@@ -29,9 +29,10 @@ model_save1111/
 *.log
 error.log
 
-# Environment variables
+# Environment variables — NEVER commit these!
 .env
 .env.*
+.env.local
 secrets.toml
 .streamlit/secrets.toml
 
