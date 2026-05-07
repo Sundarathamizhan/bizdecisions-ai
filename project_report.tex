@@ -1,0 +1,81 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{BizDecisions AI: An Intelligent SaaS Platform for Aspect-Based Sentiment Analysis and Customer Churn Prediction}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Author Name}
+\IEEEauthorblockA{\textit{Department of Computer Science} \\
+\textit{University/Institute Name}\\
+City, Country \\
+email@domain.com}
+}
+
+\maketitle
+
+\begin{abstract}
+Extracting actionable intelligence from unstructured customer feedback presents a significant challenge for modern enterprises. Conventional sentiment analysis tools frequently fail to map distinct sentiments to specific business vectors, leading to generalized metrics that lack operational utility. This paper details the architecture and implementation of BizDecisions AI, a multifaceted Software-as-a-Service (SaaS) platform engineered to process raw customer reviews through advanced Natural Language Processing (NLP) and machine learning pipelines. The system integrates a dynamic Aspect-Based Sentiment Analysis (ABSA) module utilizing a fine-tuned BERT architecture alongside cross-encoder zero-shot classification to isolate product, service, pricing, and ambience variables. Furthermore, the application incorporates a predictive Random Forest classification algorithm trained over aggregated sentiment distributions to estimate customer churn risk probabilities. Transparency is addressed via an Explainable AI (XAI) component that uncovers latent BERT self-attention weights and applies Leave-One-Out (LOO) causal mapping to highlight determinant terminology. Supported by a dual Streamlit-FastAPI architecture, secure bcrypt authentication, and automated local data persistence, the platform transitions theoretical NLP frameworks into an end-to-end commercial analytics utility.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Natural Language Processing, Sentiment Analysis, Explainable AI, Customer Churn, System Architecture
+\end{IEEEkeywords}
+
+\section{Introduction}
+Unstructured text—including product reviews, social media discourse, and direct customer feedback—represents a critical continuous data stream for organizational decision-making. However, evaluating this textual data at scale requires computational linguistic mechanisms capable of resolving contextual ambiguity. A standard polarity calculation (positive/negative) is insufficient when a single review addresses multiple operational facets simultaneously (e.g., ``The food was excellent, but the waiter was dismissive''). 
+
+To resolve this limitation, Aspect-Based Sentiment Analysis (ABSA) segments feedback into localized elements before applying classification logic. While commercial implementations of ABSA exist, they frequently operate as opaque interfaces, providing minimal analytical transparency regarding the probabilistic weights assigned to individual phrases. Furthermore, static analytical data rarely interfaces directly with predictive hazard metrics such as client attrition likelihood.
+
+This project addresses these systemic gaps by developing an integrated analytics platform that parses multi-faceted reviews, scores localized sentiment polarity, extracts interpretable sub-token attention mapping, and forecasts aggregate organizational risk variables. The core objective is to synthesize deep learning inference capabilities with standard business intelligence workflows.
+
+\section{System Architecture and Methodology}
+The application pipeline is distributed across a decoupled state interface built with Streamlit and a scalable backend managed entirely via FastAPI. The underlying logic is executed through specific sequential subsystems.
+
+\subsection{Data Ingestion and Zero-Shot Aspect Extraction}
+Text sequences enter the pipeline either via single-record manual processing or enterprise batch ingestion via comma-separated value (CSV) arrays. To maintain standardized parsing conditions, text is passed through a language detection filter relying on the \texttt{langdetect} library. Non-English sequences are normalized via Google Translate integration before further analysis.
+
+Instead of relying on rigid keyword dictionaries, the platform employs a \textit{DistilRoBERTa-based} cross-encoder pipeline configured for zero-shot natural language inference. Candidate labels including ``product'', ``service'', ``price'', and ``ambience'' are evaluated stochastically against the input sequence. The pipeline calculates a probability distribution across the candidate array, classifying any aspect surpassing a predefined 0.4 parameter threshold as a targeted evaluation subject.
+
+\subsection{Aspect-Based Sentiment Computation}
+Upon identifying the localized aspects within a given sequence, the text is evaluated by a bidirectional encoder representations from transformers (\textit{BERT}) network layer. The model has been calibrated explicitly for sequence classification tasks, encoding both the primary review string and the target aspect string concurrently to measure specific localized polarity. 
+
+Forward-propagation through the model applies a softmax activation layer against the output logits, returning probabilistic distributions across three classification nodes: Negative, Neutral, and Positive. A confidence floor is mathematically enforced; if the maximum probabilistic node registers beneath a $0.5$ confidence threshold, the classification is overridden to an ``Uncertain'' state to prevent erratic strategic assumptions.
+
+\subsection{Explainable AI and Interpretability Interface}
+Deep learning pipelines suffer from structural opacity. To permit human auditing of the resulting NLP classifications, the system extracts interpretation matrices natively during the forward pass. 
+
+The software retrieves multi-head self-attention mechanisms explicitly from the terminal neural layer of the BERT computation graph. By observing the CLS token mapping across sequence geometry, the platform applies a heat-map overlay designating exact sub-word token significance weightings. 
+
+Additionally, a parallel Leave-One-Out (LOO) attribution loop algorithm executes sequentially over the input string. This process mathematically scrubs significant linguistic tokens sequentially and recalculates the probabilistic confidence delta. This provides direct deterministic proof isolating exactly which textual components shifted the neural network trajectory.
+
+\subsection{Churn Risk Predictive Modeling}
+To bridge text analysis and revenue retention strategy, a derived predictive stage processes the classification frequencies. The system synthesizes aggregated variables spanning positive mentions, negative mentions, null metrics, and aggregate algorithmic confidence distributions.
+
+These scalar features are fed into a $50$-estimator Random Forest algorithm ensemble. Rather than relying on static or arbitrary heuristic logic, the model updates its decision geometries directly against the empirical datasets mapped during batch file ingestion. The resultant probability node outputs a scaled metric measuring raw customer defection risk.
+
+\subsection{Data Persistence and Large Language Model Interfacing}
+Infrastructure security and record persistence dictate platform reliability. User credentials governing system access are structurally secured using standard \texttt{bcrypt} cryptographic hashing protocols relying on randomized dynamic algorithmic salting. 
+
+Successfully parsed document geometries are captured and injected directly into a centralized SQLite relational schematic using automated deduplication hashing indices to prevent duplicate batch processing errors. 
+
+Furthermore, isolated analytical conclusions are forwarded via secure REST interface components to the Groq LLaMA-based inferencing engine. This integration bridges structured analytics toward generative organizational directives, drafting mathematically supported response procedures targeting identified systemic weaknesses.
+
+\section{Implementation and Results}
+The operational deployment of the architecture confirmed expected baseline metrics for sequence processing. Loading the zeroshot dependencies statically to standard memory parameters prevents secondary runtime initialization latency. 
+
+When applied to synthetic batch review ingestion metrics, the primary BERT computational network successfully parses multi-threaded aspects under continuous iterations without geometric memory overflow, confirming functional scalability across the integrated PyTorch backbone mapping. The XAI overlays precisely confirm localized neural network decision structures without relying on heavy secondary local training parameter installations.
+
+\section{Conclusion}
+The BizDecisions AI infrastructure validates the premise of unifying modular deep learning structures toward specific practical market applications. Isolating distinct aspects utilizing transformer networks while concurrently feeding resulting metadata geometries into secondary machine learning algorithms bridges fundamental NLP mechanisms toward automated enterprise logistics. Future schematic iterations will focus on advancing asynchronous multi-threaded batch handling routines and deploying dynamic continual learning parameters allowing the predictive Random Forest topologies to refine parameter weighting inherently over progressive data ingestion cycles.
+
+\end{document}

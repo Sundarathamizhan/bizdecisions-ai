@@ -1,0 +1,67 @@
+{
+  "dataset_title": "NeuralFarm Synthetic Greenhouse Sensor Dataset",
+  "description": "500-tick simulated greenhouse IoT sensor data with ML features (rolling Z-score, OLS regression) and ground-truth anomaly labels for six sensor channels.",
+  "paper": "NeuralFarm: An Integrated IoT-ML-AI Architecture for Real-Time Precision Greenhouse Management",
+  "journal": "Computers and Electronics in Agriculture (Elsevier, Q1)",
+  "total_rows": 3000,
+  "ticks": 500,
+  "sensors": 6,
+  "window_size": 20,
+  "zscore_threshold": 2.5,
+  "columns": {
+    "tick": "Simulation time step (1\u2013500)",
+    "sensor_id": "Sensor identifier key",
+    "sensor_name": "Human-readable sensor name",
+    "value": "Physical sensor reading",
+    "unit": "Measurement unit",
+    "rolling_mean": "Rolling mean over last 20 samples",
+    "rolling_std": "Rolling standard deviation over last 20 samples",
+    "z_score": "Z-score anomaly statistic (value - mean) / std",
+    "anomaly_flag": "1 = ML-detected anomaly (|z| > 2.5), 0 = normal",
+    "severity": "normal / warning (2.5<|z|<=3.5) / critical (|z|>3.5)",
+    "ground_truth_injected": "1 = fault was synthetically injected (ground truth label)",
+    "ols_slope": "OLS regression slope over rolling window",
+    "trend": "rising / stable / falling",
+    "forecast_5step": "OLS-predicted value 5 ticks ahead"
+  },
+  "anomaly_summary": {
+    "temp": {
+      "total_readings": 500,
+      "anomalies_detected": 26,
+      "ground_truth_injected": 18,
+      "anomaly_rate_pct": 5.2
+    },
+    "humidity": {
+      "total_readings": 500,
+      "anomalies_detected": 19,
+      "ground_truth_injected": 0,
+      "anomaly_rate_pct": 3.8
+    },
+    "soil": {
+      "total_readings": 500,
+      "anomalies_detected": 26,
+      "ground_truth_injected": 31,
+      "anomaly_rate_pct": 5.2
+    },
+    "co2": {
+      "total_readings": 500,
+      "anomalies_detected": 17,
+      "ground_truth_injected": 13,
+      "anomaly_rate_pct": 3.4
+    },
+    "light": {
+      "total_readings": 500,
+      "anomalies_detected": 18,
+      "ground_truth_injected": 12,
+      "anomaly_rate_pct": 3.6
+    },
+    "ph": {
+      "total_readings": 500,
+      "anomalies_detected": 10,
+      "ground_truth_injected": 7,
+      "anomaly_rate_pct": 2.0
+    }
+  },
+  "license": "CC BY 4.0",
+  "generated_by": "NeuralFarm simulation engine (Python, seed=42)"
+}

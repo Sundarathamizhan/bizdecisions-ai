@@ -1,0 +1,113 @@
+
+    RESEARCH TOPIC: adversarial attacks in network intrusion detection
+
+    ===== Literature Review =====
+    
+--- Paper 1 ---
+Title: Adversarial Machine Learning in Network Intrusion Detection Systems
+Authors: Elie Alhajjar, Paul Maxwell, Nathaniel D. Bastian
+Year: 2020
+Summary: Here are 5 bullet points summarizing the research abstract:
+
+• The study focuses on the adversarial problem in Network Intrusion Detection Systems (NIDS), where attackers intentionally craft inputs to fool machine learning models into producing incorrect outputs.
+
+• The research explores the use of evolutionary computation (particle swarm optimization and genetic algorithm) and deep learning (generative adversarial networks) to generate adversarial examples that can evade NIDS.
+
+• The study applies these adversarial example generation techniques to two publicly available datasets (NSL-KDD and UNSW-NB15) and compares them to a baseline perturbation method (Monte Carlo simulation).
+
+• The results show that the adversarial example generation techniques cause high misclassification rates in eleven different machine learning models, including a voting classifier.
+
+• The study highlights the vulnerability of machine learning-based NIDS to adversarial perturbation, indicating the need for improved security measures to protect against such attacks.
+
+--- Paper 2 ---
+Title: Untargeted White-box Adversarial Attack with Heuristic Defence Methods in Real-time Deep Learning based Network Intrusion Detection System
+Authors: Khushnaseeb Roshan, Aasim Zafar, Sheikh Burhan Ul Haque
+Year: 2023
+Summary: Here's a summary of the research abstract in 5 bullet points:
+
+• The researchers aim to address the vulnerability of Network Intrusion Detection Systems (NIDS) to adversarial attacks, which can compromise the system's ability to detect cyber threats.
+
+• Adversarial Machine Learning (AML) is a growing concern, where malicious actors create "adversarial examples" to deceive Machine Learning (ML) and Deep Learning (DL) models, including those used in NIDS, into producing incorrect predictions.
+
+• The researchers implemented four powerful adversarial attack techniques (FGSM, JSMA, PGD, and C&W) on NIDS to analyze their performance and identify vulnerabilities.
+
+• To improve NIDS robustness, the researchers implemented three defense strategies (Adversarial Training, Gaussian Data Augmentation, and High Confidence) to counter adversarial attacks and enhance the system's ability to detect cyber threats.
+
+• The study provides a comprehensive overview of AML and its implementation in computer network security, offering insights into the development of more robust NIDS systems that can withstand adversarial attacks.
+
+--- Paper 3 ---
+Title: An Adversarial Approach for Explainable AI in Intrusion Detection Systems
+Authors: Daniel L. Marino, Chathurika S. Wickramasinghe, Milos Manic
+Year: 2018
+Summary: Here are 5 bullet points summarizing the research abstract:
+
+• The study aims to improve the understanding of data-driven Intrusion Detection Systems (IDSs) by generating explanations for incorrect classifications made by these systems.
+• An adversarial approach is used to find the minimum modifications required to correctly classify misclassified samples, with the magnitude of these modifications used to identify the most relevant features.
+• The methodology can be applied to any classifier with defined gradients, does not require modification of the classifier model, and can be extended for further diagnosis and understanding of the system.
+• Experimental evaluation was conducted on the NSL-KDD99 benchmark dataset using Linear and Multilayer perceptron classifiers, with results presented in intuitive visualizations to improve interpretability.
+• The methodology generated satisfactory explanations that match expert knowledge, providing a deeper understanding of the reasoning behind misclassifications in IDSs.
+
+--- Paper 4 ---
+Title: Rallying Adversarial Techniques against Deep Learning for Network Security
+Authors: Joseph Clements, Yuzhe Yang, Ankur Sharma, Hongxin Hu, Yingjie Lao
+Year: 2019
+Summary: Here are 5 bullet points summarizing the research abstract:
+
+• Recent advancements in AI and network security have led to the adoption of deep learning approaches in network intrusion detection systems (NIDS) for effective security measures.
+
+• Deep learning models have shown superior performance against conventional network attacks, but they are vulnerable to adversarial modifications on their input data.
+
+• Adversarial machine learning has demonstrated that deep learning models can be compromised with minimal modifications to the input data, making them a potential weak point in network security.
+
+• An adversary can generate malicious inputs that fool a deep learning-based NIDS by modifying, on average, as little as 1.38 of the input features.
+
+• When designing NIDS, it is essential to consider both conventional network security and adversarial machine learning perspectives to ensure robust and effective security systems.
+
+--- Paper 5 ---
+Title: A Novel Deep Learning based Model to Defend Network Intrusion Detection System against Adversarial Attacks
+Authors: Khushnaseeb Roshan, Aasim Zafar, Shiekh Burhan Ul Haque
+Year: 2023
+Summary: Here are 5 bullet points summarizing the research abstract:
+
+• The study focuses on improving the security of Network Intrusion Detection Systems (NIDS) using Machine Learning (ML) and Deep Learning (DL) techniques.
+• The research aims to investigate powerful adversarial attack algorithms that can evade or fool DL-based NIDS, including Fast Gradient Sign Method (FGSM), Jacobian Saliency Map Attack (JSMA), Projected Gradient Descent (PGD), and Carlini & Wagner (C&W).
+• Adversarial Training is used as a defence method to increase the robustness of the NIDS model against these attacks.
+• The study evaluates the performance of the NIDS model using the Canadian Institute for Cybersecurity Intrusion Detection System 2017 (CICIDS-2017) dataset, with metrics such as f1-score and accuracy.
+• The results are presented in three phases: before the adversarial attack, after the adversarial attack, and after the adversarial defence, to assess the effectiveness of the defence method.
+
+===== Research Gap =====
+**Common Research Themes:**
+
+1. **Adversarial Machine Learning (AML) in Network Intrusion Detection Systems (NIDS):** All the papers focus on the vulnerability of machine learning-based NIDS to adversarial attacks, which are intentionally crafted inputs designed to fool the model into producing incorrect outputs.
+2. **Adversarial Attack Techniques:** The papers explore various adversarial attack techniques, including Fast Gradient Sign Method (FGSM), Jacobian Saliency Map Attack (JSMA), Projected Gradient Descent (PGD), Carlini & Wagner (C&W), and evolutionary computation (particle swarm optimization and genetic algorithm) and deep learning (generative adversarial networks).
+3. **Defence Strategies:** The papers propose various defence strategies, including Adversarial Training (AT), Gaussian Data Augmentation (GDA), High Confidence (HC), and Adversarial Training with various attack techniques.
+4. **Performance Evaluation:** The papers evaluate the performance of the adversarial attack techniques and defence strategies using various metrics, including misclassification rates, accuracy, f1-score, and precision.
+
+**Limitations in Current Research:**
+
+1. **Lack of Comprehensive Evaluation:** The papers focus on specific attack techniques and defence strategies, but a comprehensive evaluation of the various attack techniques and defence strategies is lacking.
+2. **Limited Dataset:** The papers use limited datasets, such as NSL-KDD, UNSW-NB15, and CICIDS-2017, which may not be representative of real-world scenarios.
+3. **Need for Interpretability:** The papers highlight the need for interpretability of machine learning models, but the current methods for generating explanations are limited and may not provide a complete understanding of the model's decision-making process.
+4. **Scalability:** The papers do not address the scalability of the defence strategies, which may not be effective in large-scale systems.
+
+**Potential Research Gaps:**
+
+1. **Real-World Scenarios:** The papers focus on simulated scenarios, but real-world scenarios may be more complex and require more sophisticated defence strategies.
+2. **Multi-Modal Attacks:** The papers focus on single-modal attacks, but multi-modal attacks, which combine multiple attack techniques, may be more effective and require more comprehensive defence strategies.
+3. **Explainability:** The papers highlight the need for interpretability, but the current methods for generating explanations may not provide a complete understanding of the model's decision-making process.
+4. **Human-in-the-Loop:** The papers do not address the role of human-in-the-loop in defence strategies, which may be essential in real-world scenarios.
+
+**Future Research Directions:**
+
+1. **Comprehensive Evaluation:** Conduct a comprehensive evaluation of various attack techniques and defence strategies to identify the most effective ones.
+2. **Real-World Scenarios:** Evaluate the defence strategies in real-world scenarios to ensure their effectiveness and scalability.
+3. **Multi-Modal Attacks:** Develop defence strategies that can effectively counter multi-modal attacks.
+4. **Explainability:** Develop methods for generating explanations that provide a complete understanding of the model's decision-making process.
+5. **Human-in-the-Loop:** Investigate the role of human-in-the-loop in defence strategies and develop methods for effective human-machine collaboration.
+
+===== References =====
+[1] Elie Alhajjar, Paul Maxwell, Nathaniel D. Bastian, "Adversarial Machine Learning in Network Intrusion Detection Systems," arXiv, 2020.
+[2] Khushnaseeb Roshan, Aasim Zafar, Sheikh Burhan Ul Haque, "Untargeted White-box Adversarial Attack with Heuristic Defence Methods in Real-time Deep Learning based Network Intrusion Detection System," arXiv, 2023.
+[3] Daniel L. Marino, Chathurika S. Wickramasinghe, Milos Manic, "An Adversarial Approach for Explainable AI in Intrusion Detection Systems," arXiv, 2018.
+[4] Joseph Clements, Yuzhe Yang, Ankur Sharma, Hongxin Hu, Yingjie Lao, "Rallying Adversarial Techniques against Deep Learning for Network Security," arXiv, 2019.
+[5] Khushnaseeb Roshan, Aasim Zafar, Shiekh Burhan Ul Haque, "A Novel Deep Learning based Model to Defend Network Intrusion Detection System against Adversarial Attacks," arXiv, 2023.

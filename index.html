@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sundara Thamizhan S | Data Science Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+<nav class="fixed w-full z-50 glass-nav border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <span class="text-2xl font-black tracking-tighter text-blue-600">STS.</span>
+        <div class="hidden md:flex gap-8 items-center font-medium text-sm uppercase tracking-wider">
+            <a href="#about" class="hover:text-blue-600 transition">About</a>
+            <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
+            <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
+            <a href="#certifications" class="hover:text-blue-600 transition">Certificates</a>
+            
+            <a href="resume.pdf" download class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition flex items-center gap-2 normal-case font-bold">
+                <i class="fas fa-download"></i> Resume
+            </a>
+            
+            <button onclick="toggleDark()" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800"><i id="themeIcon" class="fas fa-moon"></i></button>
+        </div>
+    </div>
+</nav>
+
+<header id="about" class="pt-48 pb-24 px-6 relative overflow-hidden">
+    <div class="absolute top-20 left-10 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl animate-pulse-slow"></div>
+    
+    <div class="max-w-6xl mx-auto relative z-10 grid md:grid-cols-3 gap-12 items-center">
+        <div class="md:col-span-1 flex justify-center" data-aos="zoom-in">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                <img src="profile.jpg" alt="Sundara Thamizhan S" onerror="this.src='https://ui-avatars.com/api/?name=Sundara+Thamizhan&background=3b82f6&color=fff&size=300'" class="relative w-64 h-64 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-2xl animate-float">
+            </div>
+        </div>
+
+        <div class="md:col-span-2" data-aos="fade-left">
+            <div class="inline-block px-4 py-1.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full mb-6 uppercase tracking-widest animate-bounce">
+                Available for Internships
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-tight">
+                Sundara <span class="text-gradient">Thamizhan S</span>
+            </h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed mb-10">
+                Entry-level <span class="text-slate-900 dark:text-white font-bold italic">Data Science Student</span> at Amrita Vishwa Vidyapeetham. Skilled in Python, Deep Learning, and data preprocessing with hands-on experience in building and deploying ML models.
+            </p>
+            
+            <div class="flex flex-wrap gap-6 items-center">
+                <a href="resume.pdf" download class="px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition shadow-2xl shadow-blue-500/30 flex items-center gap-3 scale-100 hover:scale-105">
+                    <i class="fas fa-file-pdf text-xl"></i> Download CV
+                </a>
+                <div class="flex gap-6 text-2xl text-slate-400">
+                    <a href="mailto:Sarasundar75@gmail.com" class="hover:text-blue-600 transition"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-blue-600 transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com" target="_blank" class="hover:text-blue-600 transition"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="skills" class="py-24 bg-white dark:bg-slate-800/30">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-black mb-16 text-center underline decoration-blue-500 decoration-4 underline-offset-8">Technical Arsenal</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition" data-aos="fade-up">
+                <h3 class="text-blue-600 font-bold uppercase text-xs tracking-widest mb-4">Programming</h3>
+                <ul class="space-y-2 font-medium text-sm">
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Python, C, C++</li>
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Java</li>
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>MySQL</li>
+                </ul>
+            </div>
+            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-indigo-600 font-bold uppercase text-xs tracking-widest mb-4">AI & ML</h3>
+                <ul class="space-y-2 font-medium text-sm">
+                    <li><i class="fas fa-brain text-indigo-500 mr-2"></i>CNN, TensorFlow</li>
+                    <li><i class="fas fa-brain text-indigo-500 mr-2"></i>Keras, Scikit-learn</li>
+                    <li><i class="fas fa-brain text-indigo-500 mr-2"></i>Reinforcement Learning</li>
+                </ul>
+            </div>
+            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-emerald-600 font-bold uppercase text-xs tracking-widest mb-4">Data Analytics</h3>
+                <ul class="space-y-2 font-medium text-sm">
+                    <li><i class="fas fa-chart-line text-emerald-500 mr-2"></i>Pandas & NumPy</li>
+                    <li><i class="fas fa-chart-line text-emerald-500 mr-2"></i>Matplotlib & Seaborn</li>
+                    <li><i class="fas fa-chart-line text-emerald-500 mr-2"></i>Statistics</li>
+                </ul>
+            </div>
+            <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-amber-600 font-bold uppercase text-xs tracking-widest mb-4">Frameworks</h3>
+                <ul class="space-y-2 font-medium text-sm">
+                    <li><i class="fas fa-rocket text-amber-500 mr-2"></i>Streamlit</li>
+                    <li><i class="fas fa-rocket text-amber-500 mr-2"></i>OpenCV</li>
+                    <li><i class="fas fa-rocket text-amber-500 mr-2"></i>Git / GitHub</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black mb-16">Project Experience</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            
+            <div class="group" data-aos="fade-up">
+                <div class="overflow-hidden rounded-3xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-200 dark:border-slate-700 group-hover:border-blue-500 group-hover:shadow-2xl transition-all duration-500">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 mb-6"><i class="fas fa-leaf text-2xl"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Crop Disease Classification</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm">Fine-tuned CNN models for leaf image classification. Used data augmentation to improve accuracy and deployed via Streamlit for real-time treatment guidance.</p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">Deep Learning</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">Streamlit</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group" data-aos="fade-up" data-aos-delay="100">
+                <div class="overflow-hidden rounded-3xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-200 dark:border-slate-700 group-hover:border-indigo-500 group-hover:shadow-2xl transition-all duration-500">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-xl flex items-center justify-center text-indigo-600 mb-6"><i class="fas fa-hospital text-2xl"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">RL Medical Scheduling</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm">Implemented a Multi-Agent Reinforcement Learning system to optimize doctor allocation and efficiently manage emergency medical interruptions.</p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">RL</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">Multi-Agent</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group" data-aos="fade-up">
+                <div class="overflow-hidden rounded-3xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-200 dark:border-slate-700 group-hover:border-emerald-500 group-hover:shadow-2xl transition-all duration-500">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center text-emerald-600 mb-6"><i class="fas fa-seedling text-2xl"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Crop Yield Prediction</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm">Built KNN and Random Forest regression models to predict yield based on soil/weather data. Performed data scaling and missing value handling.</p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">Machine Learning</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">Scikit-Learn</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group" data-aos="fade-up" data-aos-delay="100">
+                <div class="overflow-hidden rounded-3xl bg-white dark:bg-slate-800 p-8 shadow-sm border border-slate-200 dark:border-slate-700 group-hover:border-amber-500 group-hover:shadow-2xl transition-all duration-500">
+                    <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center text-amber-600 mb-6"><i class="fas fa-chart-line text-2xl"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Sales Prediction System</h3>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm">Developed forecasting models to predict 3-month revenue horizons, helping improve inventory planning and overall business profitability.</p>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">NumPy</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-[10px] font-bold uppercase tracking-wider">Forecasting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="certifications" class="py-24 bg-slate-50 dark:bg-slate-800/20 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black mb-16 text-center">Certifications</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-blue-500 text-[10px] font-bold mb-2 uppercase tracking-widest">2024</p>
+                <h4 class="font-bold text-sm mb-1">Data Analysis with Python</h4>
+                <p class="text-xs text-slate-500">IBM Cognitive Class</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-blue-500 text-[10px] font-bold mb-2 uppercase tracking-widest">2024</p>
+                <h4 class="font-bold text-sm mb-1">Python & ML Bootcamp</h4>
+                <p class="text-xs text-slate-500">GDSC & AWS Builders</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-blue-500 text-[10px] font-bold mb-2 uppercase tracking-widest">2023</p>
+                <h4 class="font-bold text-sm mb-1">Programming (C, C++, Java)</h4>
+                <p class="text-xs text-slate-500">Cogtis Technologies</p>
+            </div>
+            <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                <p class="text-blue-500 text-[10px] font-bold mb-2 uppercase tracking-widest">2024</p>
+                <h4 class="font-bold text-sm mb-1">Email Writing Skills</h4>
+                <p class="text-xs text-slate-500">Infosys Springboard</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="education" class="py-24 bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20">
+        <div>
+            <h2 class="text-3xl font-bold mb-10 text-blue-400">Education</h2>
+            <div class="border-l-2 border-blue-600 pl-8 relative">
+                <div class="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] top-1 shadow-[0_0_15px_rgba(37,99,235,0.8)]"></div>
+                <h3 class="text-xl font-bold">Integrated M.Sc. Data Science</h3>
+                <p class="text-slate-400">2022 — 2027</p>
+                <p class="mt-2">Amrita Vishwa Vidyapeetham, Coimbatore</p>
+                <div class="mt-4 inline-block bg-blue-600/20 text-blue-400 px-4 py-1 rounded-full text-sm font-bold">CGPA: 6.84</div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-3xl font-bold mb-10 text-indigo-400">Achievements</h2>
+            <div class="space-y-8">
+                <div class="flex gap-4 group">
+                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all">
+                        <i class="fas fa-trophy text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">2nd Place — Math Pirates</h4>
+                        <p class="text-sm text-slate-400">Login 2024, PSG College of Technology</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 group">
+                    <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                        <i class="fas fa-hands-helping text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold">Volunteer — Mathematics Team</h4>
+                        <p class="text-sm text-slate-400">Anokha 2024, Amrita Vishwa Vidyapeetham</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-24 bg-white dark:bg-slate-950 text-center px-6 border-t border-slate-100 dark:border-slate-900">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold mb-6">Let's Connect</h2>
+        <p class="text-slate-500 mb-12 text-lg">Seeking a Data Science Internship to apply my analytical and programming skills.</p>
+        
+        <div class="flex flex-wrap justify-center gap-6 mb-16">
+            <a href="mailto:Sarasundar75@gmail.com" class="px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition">Email Me</a>
+            <a href="resume.pdf" download class="px-8 py-4 border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-2xl font-bold hover:border-blue-600 transition">Get Resume PDF</a>
+        </div>
+        
+        <p class="text-xs text-slate-400 uppercase tracking-[0.3em]">Coimbatore, India • +91 86082 89969</p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+    
+    function toggleDark() {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.theme = isDark ? 'dark' : 'light';
+        document.getElementById("themeIcon").className = isDark ? "fas fa-sun" : "fas fa-moon";
+    }
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById("themeIcon").className = "fas fa-sun";
+    }
+</script>
+</body>
+</html>
