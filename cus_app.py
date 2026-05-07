@@ -193,7 +193,7 @@ def init_db():
 conn = init_db()
 
 if "authenticated" not in st.session_state:
-    st.session_state["authenticated"] = True
+    st.session_state["authenticated"] = False
 
 if not st.session_state["authenticated"]:
     st.markdown("<h2 style='text-align: center; margin-top: 100px;'>🔐 Secure Login</h2>", unsafe_allow_html=True)
@@ -251,7 +251,9 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 @st.cache_resource
 def load_model():
-    model_path = os.getenv("MODEL_PATH", r"C:\new\my_bert_model")
+    # Resolve model path: env var → relative to this file → absolute fallback
+    default_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "my_bert_model")
+    model_path = os.getenv("MODEL_PATH", default_path)
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = BertForSequenceClassification.from_pretrained(model_path, output_attentions=True)
     model.to(device)
@@ -1811,6 +1813,19 @@ if st.sidebar.button("Logout", use_container_width=True):
     st.rerun()
 
 st.sidebar.markdown("---")
+
+# Dark / Light Mode Toggle
+if "dark_mode" not in st.session_state:
+    st.session_state["dark_mode"] = True
+dark_mode = st.sidebar.toggle("🌙 Dark Mode", value=st.session_state["dark_mode"], key="dm_toggle")
+st.session_state["dark_mode"] = dark_mode
+if dark_mode:
+    _bg = "#0f172a"
+else:
+    _bg = "#f1f5f9"
+st.markdown(f"<style>.stApp{{background-color:{_bg}!important;}}</style>", unsafe_allow_html=True)
+
+st.sidebar.markdown("---")
 st.sidebar.title("⚙️ AI Settings")
 
 backbone_choice = st.sidebar.selectbox(
@@ -1825,7 +1840,16 @@ backbone_choice = st.sidebar.selectbox(
 )
 st.session_state["zeroshot_backbone"] = backbone_choice
 
-groq_api_key = st.sidebar.text_input("Groq API Key (for replies)", value=os.getenv("GROQ_API_KEY", ""), type="password")
+# Auto-load Groq key from .env — user can still override in sidebar
+_env_groq = os.getenv("GROQ_API_KEY", "")
+groq_api_key = st.sidebar.text_input(
+    "Groq API Key (for replies)",
+    value=_env_groq,
+    type="password",
+    help="Auto-loaded from your .env file. Override here if needed."
+)
+if _env_groq and groq_api_key == _env_groq:
+    st.sidebar.success("✅ Groq key loaded from .env")
 st.sidebar.markdown("[Get a free Groq key here](https://console.groq.com/keys)")
 
 st.sidebar.markdown("---")
@@ -1839,7 +1863,7 @@ st.sidebar.markdown("---")
 st.sidebar.markdown("""
 <div style="text-align: center; color: #94a3b8; padding-top: 20px;">
     Powered by <b>BERT</b> & <b>Groq</b><br>
-    <i>v2.0 Premium Edition</i>
+    <i>v2.1 Premium Edition</i>
 </div>
 """, unsafe_allow_html=True)
 
@@ -2039,6 +2063,33 @@ with tab1:
 with tab2:
     uploaded_file = st.file_uploader("Upload CSV / Excel file", type=["csv", "xlsx"])
 
+    # ── Empty State UI ────────────────────────────────────────────────────────
+    if uploaded_file is None:
+        st.markdown("""
+        <div style='background:#1e293b;border-radius:16px;padding:60px 40px;text-align:center;margin-top:20px;'>
+            <div style='font-size:4rem;margin-bottom:16px;'>📂</div>
+            <div style='color:#f8fafc;font-size:1.4rem;font-weight:700;margin-bottom:8px;'>No File Uploaded Yet</div>
+            <div style='color:#94a3b8;font-size:0.95rem;max-width:480px;margin:0 auto 24px;'>
+                Upload a <b>CSV or Excel</b> file with a column named <code>review</code>, <code>text</code>,
+                <code>content</code>, or <code>feedback</code> to start the AI analysis.
+            </div>
+            <div style='display:flex;justify-content:center;gap:24px;flex-wrap:wrap;'>
+                <div style='background:#0f172a;border-radius:10px;padding:14px 22px;color:#38bdf8;font-size:0.9rem;'>
+                    📊 Aspect-Based Sentiment
+                </div>
+                <div style='background:#0f172a;border-radius:10px;padding:14px 22px;color:#22c55e;font-size:0.9rem;'>
+                    🧠 AI Strategy Report
+                </div>
+                <div style='background:#0f172a;border-radius:10px;padding:14px 22px;color:#a78bfa;font-size:0.9rem;'>
+                    📈 Churn Risk Scoring
+                </div>
+                <div style='background:#0f172a;border-radius:10px;padding:14px 22px;color:#fb923c;font-size:0.9rem;'>
+                    📋 PDF Report Export
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
     if uploaded_file is not None:
         # ── PERFORMANCE FIX: Only re-run heavy analysis when a NEW file is uploaded ──
         # On tab switches, Streamlit re-runs the whole script. Without this guard,
@@ -2130,10 +2181,43 @@ with tab2:
         
         result_df = pd.DataFrame(results)
 
-        
         # Auto-save to DB silently (like a real SaaS)
         auto_save_to_db(result_df)
-        
+
+        # ── Summary Stats Card ─────────────────────────────────────────────────
+        _sent_cols = [c for c in result_df.columns if "Sentiment" in c]
+        _all_sents = pd.concat([result_df[c].dropna() for c in _sent_cols]) if _sent_cols else pd.Series([], dtype=str)
+        _total = len(_all_sents) or 1
+        _pos_pct  = round((_all_sents == "Positive").sum() / _total * 100, 1)
+        _neg_pct  = round((_all_sents == "Negative").sum() / _total * 100, 1)
+        _neu_pct  = round((_all_sents == "Neutral").sum()  / _total * 100, 1)
+        _conf_cols = [c for c in result_df.columns if "Confidence" in c]
+        _avg_conf = round(pd.concat([result_df[c].dropna() for c in _conf_cols]).mean() * 100, 1) if _conf_cols else 0
+        _dom_neg  = max(
+            [(asp, (result_df.get(f"{asp} Sentiment", pd.Series()) == "Negative").sum()) for asp in ["Product","Service","Price","Ambience"]],
+            key=lambda x: x[1]
+        )[0] if _sent_cols else "—"
+
+        sm1, sm2, sm3, sm4, sm5 = st.columns(5)
+        sm1.metric("📋 Reviews", len(result_df))
+        sm2.metric("✅ Positive", f"{_pos_pct}%")
+        sm3.metric("❌ Negative", f"{_neg_pct}%")
+        sm4.metric("🎯 Avg Confidence", f"{_avg_conf}%")
+        sm5.metric("⚠️ Top Issue", _dom_neg)
+
+        # ── Quick CSV Export (top-level, always visible) ───────────────────────
+        _csv_bytes = result_df.to_csv(index=False).encode("utf-8")
+        _ts = datetime.datetime.now().strftime("%Y%m%d_%H%M")
+        st.download_button(
+            "⬇️ Download Full Results as CSV",
+            _csv_bytes,
+            f"bizdecisions_results_{_ts}.csv",
+            "text/csv",
+            use_container_width=True,
+            key="top_csv_download"
+        )
+
+        st.markdown("---")
         # Override Streamlit dataframe styling for a cleaner look
         st.markdown("#### 📄 Analyzed Data")
         with st.expander("View Data Table & AI Replies"):
